@@ -1,0 +1,39 @@
+services:
+  api:
+    container_name: nest-redis-stack
+    image: nest-redis-dev
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile      
+      target: dev    
+    volumes:
+      - .:/app      
+      - /app/node_modules
+    env_file:
+      - .env
+    ports:
+      - "${HTTP_PORT}:${HTTP_PORT}"
+    networks:
+      - nest-redis-network
+    depends_on:
+      - redis
+    command: npm run start:dev
+
+  redis:
+    container_name: redis-stack
+    image: redis/redis-stack:latest
+    env_file:
+      - .env
+    ports:
+      - "${REDIS_PORT}:${REDIS_PORT}"
+      - "${REDIS_UI_PORT}:${REDIS_UI_PORT}"
+    environment:
+      - REDIS_USER=${REDIS_USER}
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    networks:
+      - nest-redis-network
+
+networks:
+  nest-redis-network:
+    driver: bridge
