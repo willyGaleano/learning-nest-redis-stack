@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { environmentValues, logLevelValues, nodeEnvValues } from '../constants';
+import {
+  environmentValues,
+  logLevelValues,
+  nodeEnvValues,
+} from '../../constants';
 
 export const CommonVariablesSchema = z
   .object({
@@ -15,6 +19,7 @@ export const CommonVariablesSchema = z
 export const RedisVariablesSchema = z
   .object({
     REDIS_PORT: z.coerce.number(),
+    REDIS_HOST: z.string(),
     REDIS_USER: z.string(),
     REDIS_PASSWORD: z.string(),
   })
@@ -23,3 +28,5 @@ export const RedisVariablesSchema = z
 export const EnvVariablesSchema = CommonVariablesSchema.merge(
   RedisVariablesSchema,
 ).describe('EnvironmentVariablesSchema');
+
+export type EnvironmentVariables = z.infer<typeof EnvVariablesSchema>;

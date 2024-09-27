@@ -1,6 +1,6 @@
 import { APP_NAME_DEFAULT, LOGGER_MESSAGE_KEY_DEFAULT } from '../constants';
-import { Environment, LogLevel, NodeEnv } from '../models/config.enum';
-import { GlobalConfig } from '../models/config.type';
+import { Environment, LogLevel, NodeEnv } from '../models/enums';
+import { GlobalConfig } from '../models/types';
 
 export default (): GlobalConfig => ({
   appName: process.env.APP_NAME ?? APP_NAME_DEFAULT,

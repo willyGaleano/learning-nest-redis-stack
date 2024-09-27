@@ -1,6 +1,6 @@
 import { Logger } from 'nestjs-pino';
 import { ZodError } from 'zod';
-import { EnvVariablesSchema } from '../models/config.schema';
+import { EnvVariablesSchema } from '../models/schemas';
 
 export const validateEnvVariables = (
   config: Record<string, unknown>,

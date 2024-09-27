@@ -1,7 +1,7 @@
 import { ConfigService } from '@nestjs/config';
-import { GlobalConfig } from '../../config/models/config.type';
-import { Environment } from '../../config/models/config.enum';
 import { LOGGER_TARGET } from '../../config/constants';
+import { GlobalConfig } from '../../config/models/types';
+import { Environment } from '../../config/models/enums';
 
 export const getPinoLoggerConfig = (
   configService: ConfigService<GlobalConfig>,

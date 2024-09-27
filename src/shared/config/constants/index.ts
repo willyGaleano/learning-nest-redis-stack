@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import { Environment, LogLevel, NodeEnv } from '../models/config.enum';
+import { Environment, LogLevel, NodeEnv } from '../models/enums';
 
 export const nodeEnvValues: [string, string] = [
   NodeEnv.DEVELOPMENT,
